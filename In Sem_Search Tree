@@ -1,0 +1,168 @@
+#include <stdio.h>
+
+
+#include <stdlib.h>
+
+ 
+
+struct node
+
+{
+
+    int data;
+
+    struct node *left;
+
+    struct node *right;
+
+};
+
+ 
+
+struct node *root;
+
+ 
+
+struct node* createtree(struct node *root, int data)
+
+ 
+
+{
+
+    if (root == NULL)
+
+    {
+
+       struct node *temp;
+
+        temp= (struct node*)malloc(sizeof(struct node));
+
+        temp->data = data;
+
+        temp->left = temp->right = NULL;
+
+        return temp;
+
+       
+
+    }
+
+ 
+
+    if (data < (root->data))
+
+ 
+
+    {
+
+        root->left = createtree(root->left, data);
+
+       
+
+    }
+
+ 
+
+    else if (data >root->data)
+
+    {
+
+        root -> right = createtree(root->right, data);
+
+ 
+
+    }
+
+ 
+
+return root;
+
+ 
+
+}
+
+ 
+
+struct node* search(struct node *root, int data)
+
+ 
+
+{
+
+    if(root == NULL)
+
+    printf("No");
+
+   
+
+    else if(data < root->data)
+
+    {
+
+        root->left=search(root->left, data);
+
+    }
+
+ 
+
+    else if(data > root->data)
+
+    {
+
+        root->right=search(root->right, data);
+
+    }
+
+ 
+
+    else
+
+ 
+
+    printf("Yes");
+
+ 
+
+return root;
+
+ 
+
+}
+
+ 
+
+ 
+
+int main()
+
+{
+
+    int data, i, n;
+
+    struct node *root=NULL;
+
+        scanf("%d", &n);
+
+        for(i=0; i<n; i++)
+
+        {
+
+            scanf("%d", &data);
+
+            root=createtree(root, data);
+
+        }
+
+           
+
+        scanf("%d", &data);
+
+        root=search(root, data);
+
+           
+
+ 
+
+}
+
+
